@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome page</title>
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body id="index">
+        <div id="login">
+            <button onclick="location.href='login.html'">BACK</button>
+        </div>
+
+        <div id="main">
+            <h1>Welcome</h1>
+            <div id="labor-options">
+                <button onclick="loadHTML('HTML/Lawnmowing.html', 'content');">LawnMowing/Weed Wacking</button>
+                <button onclick="loadHTML('HTML/LeafSnow.html', 'content');">Leaf Removal/ Snow Removal</button>
+                <button onclick="loadHTML('HTML/Maintenence.html', 'content');">Maintenence</button>
+                <button onclick="loadHTML('HTML/Cleaning.html', 'content');">Cleaning services</button> <!--Gutter powerwashing/ Car cleaning-->
+                <button onclick="loadHTML('HTML/Junk.html', 'content');">Junk Removal</button>
+                <button onclick="loadHTML('HTML/Rearangement.html', 'content');">Item rearangement</button>
+                <button onclick="loadHTML('HTML/gardening.html', 'content');">General gardening services</button> <!--Watering, planting, Mulching-->
+            </div>
+
+            <div id="content"></div>
+        </div>
+    </body>
+    <script>
+        window.loadHTML = function(file,elementID){
+            fetch(file).then(response => {
+                if (!response.ok){
+                    throw new Error("Failed to load file");
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById(elementID).innerHTML = data;
+            })
+            .catch(error => {
+                console.error("Error loading HTML:", error);
+            });
+        }
+
+        function generateInputs(){
+            const num = parseInt(document.getElementById("numAreas").value);
+            const container = document.getElementById("areasContainer");
+
+            container.innerHTML = '';
+
+            if (isNaN(num) || num <= 0){
+                container.innerHTML = "Invalid Input";
+                return;
+            }
+
+            for (let i = 0; i < num; i++){
+                container.innerHTML += `
+                <div>
+                    <label>Input for Area ${i + 1}</label><br>
+                    <input type="number" class="length" placeholder="Length" min="1">
+                    <label>x</label>
+                    <input type="number" class="width" placeholder="Width" min="1">
+                </div>
+                <br>
+                `;
+            }
+
+            container.innerHTML += '<button onclick="calculateArea()">See price</button>';
+        }
+
+        window.calculateArea = function(){
+            const lengths = document.getElementsByClassName("length");
+            const widths = document.getElementsByClassName("width");
+
+            let totalArea = 0;
+
+            for (let i = 0; i < lengths.length; i++){
+                const l = parseFloat(lengths[i].value);
+                const w = parseFloat(widths[i].value);
+
+                if (isNaN(l) || isNaN(w)){
+                    document.getElementById("result").innerText = "Invalid Input";
+                    return;
+                }
+
+                totalArea += l * w;
+            }
+
+            document.getElementById("result").innerText =
+                "Total Price in Area: $" + totalArea;
+        }
+
+        function PriceMaintenence(){
+            amount = document.getElementById("numquantity").value;
+
+            if (isNaN(amount)){
+                document.getElementById("result").innerText = "Invalid Input";
+                return;
+            }
+            
+            price = amount * 50;
+
+            document.getElementById("result").innerText = "Total price: $" + price;
+        }
+
+        function SelectCleaning() {
+            const selectedOption = document.querySelector('input[name="choice"]:checked');
+
+            if (selectedOption) {
+                const value = selectedOption.value;
+
+                let price = 0;
+
+                if(value == "Gutter Cleaning"){
+                    price = 10;
+                }else if(value == "Car Cleaning"){
+                    price = 50;
+                }
+
+                document.getElementById("result").textContent = "The price for " + value + " is $" + price;
+                console.log("Selected value:", value);
+            } else {
+                document.getElementById("result").textContent = "No option selected";
+                console.log("No option selected");
+            }
+        }
+
+        function SelectJunk() {
+            const selectedOption = document.querySelector('input[name="choice"]:checked');
+
+            if (selectedOption) {
+                const value = selectedOption.value;
+
+                let price = 0;
+
+                if(value == "Small"){
+                    price = 10;
+                }else if(value == "Medium"){
+                    price = 50;
+                }else if(value == "Large"){
+                    price = 100;
+                }
+
+                document.getElementById("result").textContent = "The price for " + value + " is $" + price;
+                console.log("Selected value:", value);
+            } else {
+                document.getElementById("result").textContent = "No option selected";
+                console.log("No option selected");
+            }
+        }
+
+        function SelectRearangement() {
+            const selectedOption = document.querySelector('input[name="choice"]:checked');
+
+            if (selectedOption) {
+                const value = selectedOption.value;
+
+                let price = 0;
+
+                if(value == "Small"){
+                    price = 20;
+                }else if(value == "Medium"){
+                    price = 60;
+                }else if(value == "Large"){
+                    price = 120;
+                }
+
+                document.getElementById("result").textContent = "The price for " + value + " is $" + price;
+                console.log("Selected value:", value);
+            } else {
+                document.getElementById("result").textContent = "No option selected";
+                console.log("No option selected");
+            }
+        }
+
+        function PriceFlowers(){
+            amount = document.getElementById("numquantity").value;
+
+            if (isNaN(amount)){
+                document.getElementById("result").innerText = "Invalid Input";
+                return;
+            }
+            
+            price = amount * 0.50;
+
+            document.getElementById("result").innerText = "Total price: $" + price;
+        }
+    </script>
+</html>
