@@ -14,7 +14,7 @@
 }
 
 #login button{
-    background-color: green;
+    background-color: #6be06d;
     border: none;
     color: white;
     padding: 6px 16px;
@@ -85,7 +85,7 @@
 }
 
 .container_login button{
-    background-color: green;
+    background-color: #6be06d;
     color: #d2d2d2;
     font-size: 12px;
     padding: 10px 45px;
@@ -99,7 +99,7 @@
 }
 
 .container_login .button{
-    background-color: green;
+    background-color: #6be06d;
     color: #d2d2d2;
     font-size: 12px;
     padding: 10px 45px;
@@ -260,11 +260,14 @@
     transform: translateX(200%);
 }
 
+/*Home*/
+
 #content {
     min-height: 200px;
     padding: 10px;
     margin-top: 15px;
     background-color: #d2d2d2;
+    text-align: center;
 }
 
 #labor-options {
@@ -275,5 +278,17 @@
 
 #labor-options button{
     padding: 10px;
+    cursor: pointer;
+}
+
+input[type=number] {
+    border: 2px solid #6be06d;
+    border-radius: 8px
+}
+
+#generateResult{
+    background-color: #6be06d;
+    border: none;
+    padding: 5px 10px;
     cursor: pointer;
 }
