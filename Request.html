@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Welcome page</title>
+        <title>Request Services</title>
         <link rel="stylesheet" href="style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body id="index">
         <div id="login">
-            <button onclick="location.href='login.html'">BACK</button>
+            <button onclick="location.href='HomePage.html'">BACK</button>
         </div>
 
         <div id="main">
@@ -64,7 +64,7 @@
                 `;
             }
 
-            container.innerHTML += '<button onclick="calculateArea()">See price</button>';
+            container.innerHTML += '<button id="generateResult" onclick="calculateArea()">See price</button>';
         }
 
         window.calculateArea = function(){
