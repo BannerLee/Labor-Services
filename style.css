@@ -334,6 +334,26 @@ input[type=text] {
     border-radius: 8px
 }
 
+input[type="checkbox"] {
+    width: auto;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* center it in popup */
+    gap: 8px;
+    margin: 10px 0;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 #generateResult{
     background-color: #6be06d;
     border: none;
@@ -342,7 +362,7 @@ input[type=text] {
 }
 
 #popup {
-  display: none; 
+  display: flex; 
   position: fixed;
   top: 0;
   left: 0;
@@ -386,8 +406,8 @@ input[type=text] {
   animation: fadeIn 0.3s ease;
 }
 
-.popup-content input {
-    width: 80%;        /* or whatever matches your design */
+.popup-content input:not([type="checkbox"]) {
+    width: 80%;        
     box-sizing: border-box;
     margin-bottom: 10px;
 }
@@ -418,6 +438,10 @@ input[type=text] {
     margin: 0 auto 10px auto;
 }
 
+.row input{
+    flex: 1;
+    width: 100%
+}
 .row input{
     flex: 1;
     width: 100%
