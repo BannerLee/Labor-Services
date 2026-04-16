@@ -1,63 +1,64 @@
 <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=divice-width, initial-scale=1.0">
-            <Title>Login</Title>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-            <link rel="stylesheet" href="style.css">
-        </head>
-        <body id="login_page">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
 
-            <div class="container_login" id="container_login">
-                <div class="form-container sign-up">
-                    <form>
-                        <h1>Create Account</h1>
-                        <div class="social-icons">
-                            <a href="#" class="icon">
-                                <i class="fa-brands fa-apple"></i>
-                            </a>
-                        </div>
-                        <span>Register with Email</span>
-                        <input type="text" placeholder="first name"> <!--First Name-->
-                        <input type="text" placeholder="last name"> <!--Last Name-->
-                        <input type="email" placeholder="Eamil"> <!--Email-->
-                        <input type="tel" placeholder="Phone"> <!--Phone number-->
-                        <input type="password" placeholder="Password"> <!--Password-->
-                        <button>Sign up</button>
-                    </form>
-                </div>
-                <div class="form-container sign-in">
-                    <form>
-                        <h1>Login</h1>
-                        <div class="social-icons">
-                            <a href="#" class="icon">
-                                <i class="fa-brands fa-apple"></i>
-                            </a>
-                        </div>
-                        <span>Login with Email</span>
-                        <input type="email" placeholder="Eamil"> <!--Email-->
-                        <input type="password" placeholder="Password"> <!--Password-->
-                        <a href="#">Forgot your password</a>
-                        <button>Sign In</button>
-                    </form>
-                </div>
-                <div class="toggle-container">
-                    <div class="toggle">
-                        <div class="toggle-panel toggle-left">
-                            <h1>Glad to work with you again</h1>
-                            <p>enter your personal information</p>
-                            <button class="hidden" id="Login">Sign In</button>
-                        </div>
-                        <div class="toggle-panel toggle-right">
-                            <h1>Welcome. I'm glad to start working with you</h1>
-                            <p>Register your personal information</p>
-                            <button class="hidden" id="Register">Sign Up</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- External CSS for login page styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <!-- Font Awesome icons (social login icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
 
-            <script src="login.js"></script>
-        </body>
-    </html>
+<body>
+
+<!-- Main login container centered on screen -->
+<div class="login-container">
+    <!-- Login form sending POST request to Flask login route -->
+    <form method="POST" action="{{ url_for('login') }}" class="login-form">
+
+        <!-- Page title -->
+        <h1>Login</h1>
+
+        <!-- Error message display (from Flask backend if login fails) -->
+        {% if error %}
+        <p style="color:red; text-align:center; margin-bottom:10px;">
+            {{ error }}
+        </p>
+        {% endif %}
+
+        <!-- Social icons -->
+        <div class="social-icons">
+            <a href="#" class="icon"><i class="fa-brands fa-apple"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
+            <a href="#" class="icon"><i class="fa-brands fa-yahoo"></i></a>
+        </div>
+
+        <!-- Section label -->
+        <span>Login with Email</span>
+
+        <!-- Email input field -->
+        <input type="email" name="email" placeholder="Email" required>
+        <!-- Password input field -->
+        <input type="password" name="password" placeholder="Password" required>
+
+        <!-- Forgot password -->
+        <a href="#">Forgot your password?</a>
+
+        <!-- Submit login button -->
+        <button type="submit">Sign In</button>
+
+        <!-- Link to signup page -->
+        <p class="signup-link">
+            Don't have an account?
+            <a href="/signup">Create one</a>
+        </p>
+
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+</body>
+</html>
